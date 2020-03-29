@@ -2,33 +2,19 @@
 #Classes in thompsons construction
 #need to re-do matching
 class State:
-    
-    
-    # Every state has 0,1 or 2 arrows/edges
-    edges=[]
-    
-    
-    #Label for the arrows. None means epsilon
     label=None
-    
-    #is this an accept state?
-    #Constructor for the class
-
-    def __init__(self,label=None,edges=[]):
-        self.edges=edges
-        self.label=label
+  # Constructor.
+    def __init__(self, label=None, edges=None):
+        # Every state has 0, 1, or 2 edges from it.
+        self.edges = edges if edges else []
+        # Label for the arrows. None means epsilon.
+        self.label = label
         
 class Fragment:
-    #start state of NFA fragment
-    start = None
-    #accept state of NFA fragment
-    accept = None
-    
     #Constructor
     def __init__(self,start,accept):
         self.start=start
         self.accept=accept
-
 
 def shunt(infix):
     #convert input to a stack list
@@ -67,16 +53,15 @@ def shunt(infix):
             postfix.append(c)
 
     #pop all operators to the output
-    while(opers):
+    while opers:
         postfix.append(opers.pop())
     #convert output list to string
     return ''.join(postfix)
 
 
-def regex_compile(infix):
+def compile(infix):
     postfix = shunt(infix)
-    postfix=list(postfix)[::-1]
-    
+    postfix=list(postfix)[::-1] 
     nfa_stack = []
     while(postfix):
         #pop character from postfix
@@ -113,9 +98,9 @@ def regex_compile(infix):
              newfrag= Fragment(start,accept)
         else:
             accept = State()
-            start = State(label=c,edges=[])
+            start = State(label=c,edges=[accept])
             #create new instance of fragment to represent the new nfa
-            newfrag = Fragment(start,accept)
+        newfrag = Fragment(start,accept)
         #push new nfa to stack
         nfa_stack.append(newfrag)
             
@@ -124,16 +109,54 @@ def regex_compile(infix):
     return nfa_stack.pop()
 
 
+#add a state to a set and follow all e arrows
+def followEs(state, current):
+    #only do something when we haven't already seen the state
+    if state not in current:
+        #put the state itself into the state
+        current.add(state)
+        #See whether state is labelled be E
+        if state.label is None:
+            #Loop through the states pointed to by this state
+            for x in state.edges:
+                #follow all of their epsilons too
+                followEs(x, current)
 
-def match(regex,s):
-    #return true if regex=s (fully matches, no partial match)
+def match(regex, s):
+    #this function will return true if and only if the regular expression
+    #regex (fully) matches the string s. It returns false otherwise
     
-    # compile regex into nfa
-    nfa = regex_compile(regex);
-    #see if nfa matches string s
-    return  nfa
-    
-print(match("a.b|b*","bbbbb"))
+    #compile the regular expression into nfa
+    nfa = compile(regex)
+
+    # try to match the regular expression to the string s.
+    #the current set of states
+    current = set()
+    #add the first state, and follow all of epsilon arrows
+    followEs(nfa.start, current)
+    #the previuos set of states
+    previous = set()
+
+    #loop through characters in s
+    for c in s:
+        previous = current
+        #creat a new empty set for states we're about to be in
+        current = set()
+        #loop through the previous states
+        for state in previous:
+            #only follow arrows not labeled by E (epsilon)
+            if state.label is not None:
+                #if the label of the state is = to the character we've read
+                if state.label == c:
+                    #add the state(s) at the end of the arrow to current.
+                   followEs(state.edges[0], current)
+
+    #ask the nfa if it matches the string s.
+    return nfa.accept in current	
+
+
+
+print(match("(a*)|(b*)","bbbbbbbbbbabbbbbbb"))
     
     
 
