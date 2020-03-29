@@ -1,5 +1,9 @@
-#Dylan Creaven - Graph Theory Project
+#Dylan Creaven
+#Classes in thompsons construction
+#need to re-do matching
 class State:
+    
+    
     # Every state has 0,1 or 2 arrows/edges
     edges=[]
     
@@ -25,11 +29,12 @@ class Fragment:
         self.start=start
         self.accept=accept
 
+
 def shunt(infix):
     #convert input to a stack list
     infix=list(infix)[::-1]
 
-    #operator stackIndexError: list index out of range
+    #operator stack
     opers =[]
 
     #Output List. 
@@ -67,7 +72,8 @@ def shunt(infix):
     #convert output list to string
     return ''.join(postfix)
 
-def compile(infix):
+
+def regex_compile(infix):
     postfix = shunt(infix)
     postfix=list(postfix)[::-1]
     
@@ -117,50 +123,17 @@ def compile(infix):
     #the nfa stack should have exactly one nfa one it -  the answer
     return nfa_stack.pop()
 
-#add a state to a set and follow all of the Epsilon arrows
-def follow(state,current):
-    #only do something when we havent already seen this state
-    if state not in current:
-        #put state into current
-        current.add(state)
-        #see whether state is labelled by Epsilon
-        if state.label is None:
-            #loop through the states pointed to by this state
-            for x in state.edges:
-                #follow all of their epsilons too
-                follow(x, current)
 
-def match(regex, s):
+
+def match(regex,s):
     #return true if regex=s (fully matches, no partial match)
+    
     # compile regex into nfa
-    nfa = compile(regex)
-
-
-    #try to match the regular expression to the string s
-
-    #the current set of states 
-    current= set()
-    #add first state and follow all epsilons arrows
-    follow(nfa.start, current)
-
-    # the previous set of states
-    previous = set()
-
-    for char in s:#loop through characters in string
-        #keep track of where we are
-        previous = current
-        #create a new empty set for states were gonna be in
-        current = set()
-        #loop trhough previous states
-        for state in previous:
-            #only follow arrows not labelled Epsilon
-            if state.label is not None:
-                #if label of state is equal to character we've read
-                if state.label==char:
-                    #append the state at end of arrow to current.
-                     follow(state.edges[0],current)
-            
+    nfa = regex_compile(regex);
     #see if nfa matches string s
-    return nfa.accept in current
+    return  nfa
     
 print(match("a.b|b*","bbbbb"))
+    
+    
+
