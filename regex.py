@@ -105,8 +105,7 @@ def compile(infix):
     return nfa_stack.pop()
 
 def followEs(state, current):
-
-    #add a state to a set and follow all e arrows
+    """Add a state to a set and follow all e arrows/edges"""
     #only do something when we haven't already seen the state
     if state not in current:
         #put the state itself into the state
@@ -119,6 +118,7 @@ def followEs(state, current):
                 followEs(x, current)
                 
 def match(regex, s):
+    """Match a string to an NFA"""
     #this function will return true if and only if the regular expression
     #regex (fully) matches the string s. It returns false otherwise
     
@@ -150,18 +150,36 @@ def match(regex, s):
 
 # concatenation . does not work as required
 if __name__ == "__main__":
+    """Main code of file, where you test the program and allow user to input their own regular expressions and strings to match together"""
     tests=[
-        ["a.b|b*","bbbbb",True],
-        ["a.b|b*","bbbx",False],
         ["a.b","ab",True],
-        ["b*","",True]
-        
+        ["a.b","c",False],
+        ["b*","bbb",True],
+        ["b*","ba",False],
+        ["a|b","a",True],
+        ["a|b","f",False],
+        ["a.b|b*","bbbbbbb",True],
+        ["b*","",True]        
     ]
-    
+   # print("TESTS")
     for test in tests:
+        #Uncomment two lines below to have tests and their results printed to screen
+        #print("Regex: "+test[0]+" String: "+test[1])
+        #print(match(test[0],test[1]))
         assert match(test[0],test[1])==test[2],test[0] +\
         ("Should" if test[2] else "Should not")+" match "+test[1]
         
-        
+    #Get User Input from command line
+    print("Would you like to test your own regular expression and String? ")
+    choice = input("Y/N \n\n")
+    
+    #If yes then recieve regular expression and string from user and try to match them
+    if(choice.casefold()=='y'):
+        regex = input("Please enter your regular expression!: ")
+        string = input("Please enter your string to be matched!: ")
+        print("Regex: ",regex,": String: ", string, " :",  match(regex, string))
+    else:
+        #if anything other than yes, thank the user and end program
+        print("Thank you and Goodbye!") 
         
         
