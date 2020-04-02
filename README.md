@@ -1,4 +1,3 @@
-# projectGraphTheory
 # CODE TO BE REVIEWED FOR PROJECT IS REGEX.PY
 # Dylan Creaven - G00354442
 # README - Graph Theory Project - Non-Deterministic Finite Automaton
