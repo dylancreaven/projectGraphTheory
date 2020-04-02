@@ -1,8 +1,9 @@
 # projectGraphTheory
-# README - Graph Theory Project - Non-Deterministic Finite Automaton
+# CODE TO BE REVIEWED FOR PROJECT IS REGEX.PY
 # Dylan Creaven - G00354442
+# README - Graph Theory Project - Non-Deterministic Finite Automaton
 
-# #CODE TO BE REVIEWED FOR PROJECT IS REGEX.PY
+
 Objective of Project: Create a program that was able to create a Non-Deterministic Finite Automaton to represent
 a regular expression and match a string to the regular expression.
 
