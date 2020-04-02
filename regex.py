@@ -21,11 +21,10 @@ def shunt(infix):
     """Return infix regex as postfix"""
     #convert input to a stack list
     infix=list(infix)[::-1]
-
     #operator stack and output list as empty lists
     opers,postfix =[],[]
     #operator precedence
-    prec={'*':100,  '.':90,  '|':80,   ')':70,    '(':60}
+    prec={'*':100,'.':90,  '|':80,   ')':70,    '(':60}
 
     #loop through input one character at a time
     while infix:
@@ -174,12 +173,16 @@ if __name__ == "__main__":
     choice = input("Y/N \n\n")
     
     #If yes then recieve regular expression and string from user and try to match them
-    if(choice.casefold()=='y'):
-        regex = input("Please enter your regular expression!: ")
-        string = input("Please enter your string to be matched!: ")
-        print("Regex: ",regex,": String: ", string, " :",  match(regex, string))
-    else:
-        #if anything other than yes, thank the user and end program
-        print("Thank you and Goodbye!") 
-        
+    while(choice.casefold()!='n'):         
+        if(choice.casefold()=='y'):
+            regex = input("Please enter your regular expression!: ")
+            string = input("Please enter your string to be matched!: ")
+            print("Regex: ",regex,": String: ", string, " Result:",  match(regex, string))
+        else:
+            print("Invalid Option - Please Try Again")
+        print("\nWould you like to test your own regular expression and String? ")
+        choice = input("Y/N \n\n")
+    #end program
+    print("Thank you and Goodbye!")
+
         
