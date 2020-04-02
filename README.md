@@ -13,7 +13,7 @@ State - A class for an object, with edges/arrows coming out of it and labels for
 
 Fragment - A class for a fragment of a Non-Deterministic Finite Automaton with a start state and accept state
 
-shunt(infix) - a function that takes in a regular expression as a string, assumes the string is in infix notation and converts it to postfix notation. Uses a dictionary to create precedence for each operator in a regular expression.
+shunt(infix) - Function called from the Shunting program also in the repository and imported into regex.py.This is a function that takes in a regular expression as a string, assumes the string is in infix notation and converts it to postfix notation. Uses a dictionary to create precedence for each operator in a regular expression.
 
 compile(infix) - a function that takes in a regular expression as a string, assumes the string is in infix notation, then calls the shunt function to convert the string to postfix notation. Then it uses the postfix string and converts that into a list format. Then it goes through each character in the list (i.e the postfix string) and if the character is a letter/number (i.e a non-special character). If the character is a special character (e.g '|') then the program has special routes just for those characters. It will pop fragment(s) off the stack and choose the edge/arrow followed by which operator is being looked at.
 
