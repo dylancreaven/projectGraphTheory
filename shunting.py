@@ -1,4 +1,5 @@
-#Dylan Creaven
+#Dylan Creaven - G00354442
+#Graph Theory Project 2020
 # =The Shunting Yard algoritm for regex
 
 def shunt(infix):
