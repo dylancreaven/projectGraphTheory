@@ -8,7 +8,7 @@ def shunt(infix):
     #operator stack and output list as empty lists
     opers,postfix =[],[]
     #operator precedence
-    prec={'*':100,'.':90,  '|':80,   ')':70,    '(':60}
+    prec={'*':100,'.':90,  '|':80, '/':80, '\\':80,   ')':70,    '(':60}
 
     #loop through input one character at a time
     while infix:
@@ -37,3 +37,4 @@ def shunt(infix):
         postfix.append(opers.pop())
     #convert output list to string
     return ''.join(postfix)
+

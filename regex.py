@@ -2,6 +2,7 @@
 #Classes in thompsons construction
 #need to re-do matching
 import shunting
+import argparse
 class State:
     """A State with one or two edges/arrows, with all edges/arrows labelled w/ label"""
   # Constructor.
@@ -39,7 +40,7 @@ def compile(infix):
             start = frag2.start
             #frag1s new accept state 
             accept = frag1.accept
-        elif(c=='|' ):
+        elif(c=='|' or c=='/' or c=="\\"):
             #pop 2 frags off stack
             frag1=nfa_stack.pop()
             frag2=nfa_stack.pop()
@@ -131,7 +132,19 @@ if __name__ == "__main__":
         #print(match(test[0],test[1]))
         assert match(test[0],test[1])==test[2],test[0] +\
         ("Should" if test[2] else "Should not")+" match "+test[1]
-        
+     
+     
+     
+    parser = argparse.ArgumentParser(add_help=False,prog='G00354442 - Dylan Creaven\'s Graph Theory Project 2020')
+    parser.add_argument('--name',action='help', help='Project name: %(prog)s')
+    parser.add_argument("-nfa", required=True, help="NFA - Instead of '|', use '\' or '/' as the OR operator",type=str)
+    parser.add_argument("-string", required=True, help="String to match to nfa",type=str)
+    parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS, help='Default Help Message of Project Command line')
+    args = parser.parse_args()
+    print(" Result:", match(str(args.nfa), str(args.string)))
+ 
+
+
     #Get User Input from command line
     print("Would you like to test your own regular expression and String? ")
     choice = input("Y/N \n\n")
