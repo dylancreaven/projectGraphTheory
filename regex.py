@@ -152,7 +152,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     #takes in regular expression and string from command line arguments and tries to match them using the match() function
     if(str(args.regex)!="None" and str(args.string)!="None"):
-       print("Regex: ",str(args.regex),": String: ", str(args.string), " Result:",  match(str(args.regex), str(args.string)))
+       print("Regex: ",str(args.regex)," String: ", str(args.string), " Result:",  match(str(args.regex), str(args.string)))
        print("Thank you and Goodbye!")
          
     else:
@@ -165,7 +165,7 @@ if __name__ == "__main__":
             if(choice.casefold()=='y'):
                 regex = input("Please enter your regular expression!: ")
                 string = input("Please enter your string to be matched!: ")
-                print("Regex: ",regex,": String: ", string, " Result:",  match(regex, string))
+                print("Regex: ",regex," String: ", string, " Result:",  match(regex, string))
             else:
                 print("Invalid Option - Please Try Again")
             print("\nWould you like to test your own regular expression and String? ")
