@@ -110,13 +110,14 @@ If you wish to use arguments given from the command line in a method within your
 This will tell the program to expect a string after the "-example" argument in the command line. Here's an example of what that would look like in your command prompt:
 `python regex.py -example EXAMPLE`
 
-After receiving an input, you can use the argument in your code by using `args.example`. Make sure the word after "args." is the same word you called the argument when you added it. Here's an example of the whole code put together now:
+After receiving an input, you can use the argument in your code by using `type(args.example)`.The "type" being the type of variable you have chosen e.g. str for a string, int for an Integer. 
+Make sure the word after "args." is the same word you called the argument when you added it. Here's an example of the whole code put together now:
 ```
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-example", help="this is an example argument",type=str)
 args = parser.parse_args()
-if(args.example =="Example"):
+if(str(args.example) =="Example"):
   print("Here I am using the argument from command line in my code")
 ```
 So, if, within the command line, I entered `python regex.py -example Example`
