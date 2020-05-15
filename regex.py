@@ -151,7 +151,7 @@ if __name__ == "__main__":
     parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS, help='Default Help Message of Project Command line')
     args = parser.parse_args()
     #takes in regular expression and string from command line arguments and tries to match them using the match() function
-    if(str(args.regex)!="None" and str(args.string)!="None"):
+    if(args.regex !="None" and args.string !="None"):
        print("Regex: ",str(args.regex)," String: ", str(args.string), " Result:",  match(str(args.regex), str(args.string)))
        print("Thank you and Goodbye!")
          
