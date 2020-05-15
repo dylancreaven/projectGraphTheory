@@ -27,6 +27,7 @@ should output the version of python installed
 #### How to Run the Program
 ##### To run the program 
 either click on the regex.py file within file explorer or type "python regex.py" in the command prompt (must be within the project folder within command prompt i.e.
+
 ![command_prompt](/images/cmdpic.png)
 
 The program will ask if you wish to enter your own regular expression, Enter Y or y for yes and N or n for no. 
@@ -63,6 +64,28 @@ Here's an example of a test that will not pass:
 > ["k|d*","qqqq”, True]
 
 And the error that appears: 
-![command_prompt](/images/test_error.png)
+![error](/images/test_error.png)
 
 The code just below the array of tests is a for loop that goes through each test in the array and **asserts** if the expected result is equal to the actual result and outputs an Assertion Error to the console if they do not match.
+
+##Algoritms
+The code can be boiled down to simple steps:
+1. Take in a regular expression and convert it from infix to postfix. This is done using the shunting algoritm from shuntin.py and is imported into regex.py. A regular expression already in postfix notation and is put through the shunting algoritm will come out the exact same way as it went it, it will stay in postfix notation.
+A regular expression being converted from infix to postfix as you can see the order of the operators change
+
+![inifx to postfix](/images/infix_to_postfix.png)
+
+A regular expression being converted from postfix to postfix, no order change
+
+![postfix to postfix](/images/postfix_to_postfix.png)
+
+2. The compile function will take in the regular expression in **postfix notation** and will move through it character by character and will start creating the Non-Deterministic Finite Automaton (NFA) based on the characters it encounters throughout the expression
+
+In this diagram there is an example regular expression: a.b|c* which means any string with:
+an 'a' followed by a 'b' OR a string with any number of c's e.g. "cccccc" will pass. 
+The diagram shows an NFA in image form and how to navigate it. This means that we should, by following the chart, be able to say whether or not any string matches the nfa i.e. ends up in an accept state (any state with a double circle)
+
+
+![nfa diagram](/images/explanation_of_nfa.png)
+
+3. The program will then go through the string entered and pass it through the nfa. If that string should end up in an accept state **and** stays in that state until the string has fully gone through the NFA then they match and the result outputted is "True" otherwise (i.e. if the string doesn't end up in an accept state) then "False" is outputted.
