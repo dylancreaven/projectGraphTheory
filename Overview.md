@@ -26,7 +26,14 @@ Once downloaded, run the .exe file. Follow the on-screen instructions on how to 
 should output the version of python installed
 #### How to Run the Program
 ##### To run the program 
-either click on the regex.py file within file explorer or type "python regex.py" in the command prompt (must be within the project folder within command prompt i.e.
+Firstly, to download the project, you need to copy the link of the repository
+> https://github.com/dylancreaven/projectGraphTheory
+Then open a command prompt on your computer and enter the command in this format: `git clone REPOSITORY_URL`.
+This should **clone** the entire repository onto your local machine. Open the project folder in file explorer so it should look something like:
+
+![file_explorer](/images/file_explorer.png)
+
+Either double-click on the regex.py file or type "python regex.py" in the command prompt (must be within the project folder on the command prompt i.e.
 
 ![command_prompt](/images/cmdpic.png)
 
