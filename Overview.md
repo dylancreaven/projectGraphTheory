@@ -80,7 +80,7 @@ The code just below the array of tests is a for loop that goes through each test
 
 ## Algorithms
 The code can be boiled down to simple steps:
-1. Take in a regular expression and convert it from infix to postfix notation. This is a way to re-organise a regular expression so that all the operators e.g "|", "\*" etc. are grouped together and that all the characters read in e.g. 'a', 'd' etc. are also all together, to make for an increase in ease of reading through the regular expression and constructing an NFA based on it. This is done using the shunting algorithm from shunting.py and is imported into regex.py. A regular expression already in postfix notation and is put through the shunting algorithm will come out the exact same way as it went it, it will stay in postfix notation.
+1. Take in a regular expression and convert it from infix to postfix notation. This is a way to re-organise a regular expression so that all the operators e.g. "|", "\*" etc. are grouped together and that all the characters read in e.g. 'a', 'd' etc. are also all together, to make for an increase in ease of reading through the regular expression and constructing an NFA based on it. This is done using the shunting algorithm from shunting.py and is imported into regex.py. A regular expression already in postfix notation and is put through the shunting algorithm will come out the exact same way as it went it, it will stay in postfix notation.
 
 A regular expression being converted from infix to postfix as you can see the order of the operators change
 
