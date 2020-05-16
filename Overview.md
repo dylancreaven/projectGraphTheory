@@ -71,7 +71,8 @@ The code just below the array of tests is a for loop that goes through each test
 
 ## Algorithms
 The code can be boiled down to simple steps:
-1. Take in a regular expression and convert it from infix to postfix. This is done using the shunting algorithm from shuntin.py and is imported into regex.py. A regular expression already in postfix notation and is put through the shunting algorithm will come out the exact same way as it went it, it will stay in postfix notation.
+1. Take in a regular expression and convert it from infix to postfix notation. This is a way to re-organise a regular expression so that all the operators e.g "|", "\*" etc. are grouped together and that all the characters read in e.g. 'a', 'd' etc. are also all together, to make for an increase in ease of reading through the regular expression and constructing an NFA based on it. This is done using the shunting algorithm from shunting.py and is imported into regex.py. A regular expression already in postfix notation and is put through the shunting algorithm will come out the exact same way as it went it, it will stay in postfix notation.
+
 A regular expression being converted from infix to postfix as you can see the order of the operators change
 
 ![inifx to postfix](/images/infix_to_postfix.png)
@@ -111,13 +112,13 @@ This will tell the program to expect a string after the "-example" argument in t
 `python regex.py -example EXAMPLE`
 
 After receiving an input, you can use the argument in your code by using `type(args.example)`.The "type" being the type of variable you have chosen e.g. str for a string, int for an Integer. 
-Make sure the word after "args." is the same word you called the argument when you added it. Here's an example of the whole code put together now:
+Make sure the word after "args." is the same word you named the argument when you added it above. Here's an example of the whole code put together now:
 ```
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-example", help="this is an example argument",type=str)
 args = parser.parse_args()
-if(str(args.example) =="Example"):
+if(str(args.example) =="Example"): # if string taken in from command line is equal to 'Example'
   print("Here I am using the argument from command line in my code")
 ```
 So, if, within the command line, I entered `python regex.py -example Example`
