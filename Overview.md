@@ -27,7 +27,9 @@ should output the version of python installed
 #### How to Run the Program
 ##### To run the program 
 Firstly, to download the project, you need to copy the link of the repository
+
 > https://github.com/dylancreaven/projectGraphTheory
+
 Then open a command prompt on your computer and enter the command in this format: `git clone REPOSITORY_URL`.
 This should **clone** the entire repository onto your local machine. Open the project folder in file explorer so it should look something like:
 
