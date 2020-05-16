@@ -134,7 +134,7 @@ if __name__ == "__main__":
         #print("Regex: "+test[0]+" String: "+test[1])
         #print(match(test[0],test[1]))
         assert match(test[0],test[1])==test[2],test[0] +\
-        ("Should" if test[2] else " Should not")+" match "+test[1]
+        (" Should" if test[2] else " Should not")+" match "+test[1]
      
      
     #add a parser to the script using argparse
